@@ -1,0 +1,125 @@
+import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CancelIcon from '@material-ui/icons/Cancel';
+
+import '../companies-add-form/post-add-form.css'
+
+export default class CompaniesEditForm extends Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: props.name || '',
+            address: props.address || '',
+            phonesNumber: props.phonesNumber || '',
+            site: props.site || '',
+            description: props.description || ''
+        }
+        this.onName = this.onName.bind(this);
+        this.onAddress = this.onAddress.bind(this);
+        this.onPhonesNumber = this.onPhonesNumber.bind(this);
+        this.onSite = this.onSite.bind(this);
+        this.onDescription = this.onDescription.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+    
+    onName(e) {
+        this.setState({
+            name: e.target.value
+        })
+    };
+    onAddress(e) {
+        this.setState({
+            address: e.target.value
+        })
+    };
+    onPhonesNumber(e) {
+        this.setState({
+            phonesNumber: e.target.value
+        })
+    }
+    onSite(e) {
+        this.setState({
+            site: e.target.value
+        })
+    }
+    onDescription(e) {
+        this.setState({
+            description: e.target.value
+        })
+    }   
+
+    onSubmit(e) {
+        e.preventDefault()
+        // this.props.onAdd(this.state)
+        this.setState({
+            name: '',
+            address: '',
+            phonesNumber: '',
+            site: '',
+            description: ''
+        });
+    }
+    render() {
+        return (
+            <div>
+                <form className='CompaniForm'
+                onSubmit={this.onSubmit}>
+                    <button className='hideBtn' onClick={this.props.handleEditFormHide}>
+                        <CancelIcon />
+                    </button>
+                    <input 
+                        type='text'
+                        name='name'
+                        placeholder='Name'
+                        minlength="2"
+                        maxlength="30"
+                        className='first-place'
+                        onChange={this.onName}
+                        value={this.state.name}
+                    />
+                    <input 
+                        type='number'
+                        name='number'
+                        minlength="7"
+                        maxlength="17"
+                        placeholder='Phone number'
+                        className='first-place'
+                        onChange={this.onPhonesNumber}
+                        value={this.state.phonesNumber}
+                    />
+                    <input 
+                        type='text'
+                        name='address'
+                        placeholder='Address'
+                        maxlength="40"
+                        className='second-place'
+                        onChange={this.onAddress}
+                        value={this.state.address}
+                    />
+
+                    <input 
+                        type='text'
+                        name='webSite'
+                        placeholder='Web Site'
+                        className='second-place'
+                        onChange={this.onSite}
+                        value={this.state.site}
+                    />
+                    <input 
+                        type='text'
+                        name='description'
+                        maxlength="400"
+                        placeholder='Description'
+                        className='last-place'
+                        onChange={this.onDescription}
+                        value={this.state.description}
+                    />
+                    <Button type='submit' variant="primary" onClick={this.props.handleEditFormHide}>Save</Button>{' '}
+                </form>
+            </div>
+        );
+    }
+}
+
