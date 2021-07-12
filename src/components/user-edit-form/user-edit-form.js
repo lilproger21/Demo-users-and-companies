@@ -82,7 +82,7 @@ export default class UserEditForm extends Component  {
                 <form 
                     className='bottom-panel d-flex'
                     onSubmit={this.onSubmit}>
-                    <button className='hideBtn' onClick={this.props.handleEditFormHide}>
+                    <button className='hide-button' onClick={this.props.handleEditFormHide}>
                         <CancelIcon />
                     </button>
                     <input

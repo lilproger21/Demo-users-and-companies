@@ -64,7 +64,7 @@ export default class CompaniesAddForm extends Component {
     render() {
         return (
             <div>
-                <form className='CompaniForm'
+                <form className='companies-form'
                 onSubmit={this.onSubmit}>
                     <input 
                         type='text'

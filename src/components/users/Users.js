@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import UsersAddForm from '../users-add-form/users-add-form.js';
 import UsersList from '../users-list/users-list.js';
-import StatusFilter from '../status-filter/status-filter.js';
 import SearchPanel from 'components/search-panel/search-panel.js';
 
 import './index.css'
@@ -77,15 +76,14 @@ export default class Users extends Component {
         const visiblePosts = this.searchPost(date, term);
 
         return (
-            <div className='zag'>
+            <div className='add-form'>
                 <UsersAddForm
                     onAdd={this.addItem}
                 />
                 {/* PostListUser => UsersList,  PostAddFormUser => <UserForm user={объект юзера если это редактирование, в ином это новый юзер или нет} */}
                 <div className='d-flex'>
                     <SearchPanel 
-                        onUpdateSearch={this.onUpdateSearch}/>
-                    <StatusFilter />                    
+                        onUpdateSearch={this.onUpdateSearch}/>                
                 </div>
 
                 <UsersList

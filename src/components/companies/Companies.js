@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import CompaniesList from '../companies-list/companies-list.js';
 import CompaniesAddForm from '../companies-add-form/companies-add-form.js';
-import StatusFilter from '../status-filter/status-filter.js';
 import SearchPanel from 'components/search-panel/search-panel.js';
 
 const date = [ 
@@ -82,7 +81,6 @@ export default class Companies extends Component {
                 <div className='d-flex'>
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch} />
-                    <StatusFilter />
                 </div>
                 <CompaniesList
                     posts={visiblePosts}

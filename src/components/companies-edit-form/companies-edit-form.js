@@ -64,9 +64,9 @@ export default class CompaniesEditForm extends Component {
     render() {
         return (
             <div>
-                <form className='CompaniForm'
+                <form className='companies-form'
                 onSubmit={this.onSubmit}>
-                    <button className='hideBtn' onClick={this.props.handleEditFormHide}>
+                    <button className='hide-button' onClick={this.props.handleEditFormHide}>
                         <CancelIcon />
                     </button>
                     <input 

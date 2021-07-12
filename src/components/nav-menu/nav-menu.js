@@ -11,14 +11,14 @@ const NavMenu = () => {
         return (
             <header className='header'>
                 <div className='container'>
-                    <div className='header__body'>
-                        <nav className='header__menu'>
-                            <ul className="header__list">
+                    <div className='header-body'>
+                        <nav className='header-menu'>
+                            <ul className="header-list">
                                 <li>
-                                    <NavLink to='/Company' activeStyle={{color: "blue"}} className='button__header'>Company</NavLink>
+                                    <NavLink to='/Companies' activeStyle={{color: "blue"}} className='button-header'>Companies</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/Users' activeStyle={{color: "blue"}} className='button__header'>Users</NavLink>
+                                    <NavLink to='/Users' activeStyle={{color: "blue"}} className='button-header'>Users</NavLink>
                                 </li>
                             </ul>
                         </nav>

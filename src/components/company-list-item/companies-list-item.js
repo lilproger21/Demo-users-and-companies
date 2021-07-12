@@ -34,7 +34,7 @@ export default class CompaniesListItem extends Component {
         const { name, address, phonesNumber, site, description, onDelete} = this.props
         return (
             <div className='list-group-item d-block'>
-                <ul className='ClassName'>
+                <ul className='info-list'>
                     <li className='name'>{name}</li>
                     <li className='address'>{address}</li>
                     <li className='phonesNumber'>{phonesNumber}</li>
@@ -48,7 +48,7 @@ export default class CompaniesListItem extends Component {
                         onClick={onDelete}>                      
                         <i className='fa fa-trash-o'></i>
                 </button>
-                <button className='editBtn' onClick={this.handleEditFormShow}>
+                <button className='edit-button' onClick={this.handleEditFormShow}>
                     <EditIcon />
                 </button>
                 {this.state.showEditForm && (

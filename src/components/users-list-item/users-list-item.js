@@ -47,7 +47,7 @@ export default class UsersListItem extends Component {
                     onClick={onDelete}>                    
                     <i className='fa fa-trash-o'></i>
                 </button>
-                <button className='editBtn' onClick={this.handleEditFormShow}>
+                <button className='edit-button' onClick={this.handleEditFormShow}>
                     <EditIcon />
                 </button>
                 {this.state.showEditForm && (

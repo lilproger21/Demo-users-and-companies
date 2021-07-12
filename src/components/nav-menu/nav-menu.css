@@ -21,7 +21,7 @@
 }
 
 
-.header__body {
+.header-body {
     position: relative;
     z-index: 2;
     display: flex;
@@ -30,21 +30,21 @@
     align-items: center;
 }
 
-.header__list{
+.header-list{
     display: flex;
     padding: 0;
     text-align: center;
 }
 
 
-.header__list li {
+.header-list li {
     list-style: none;
     margin:  5px 10px;
 
 }
 
 
-.button__header{
+.button-header{
     margin-top: 15px;
     background-color: rgb(231, 9, 102);
     font-size: 45px;
@@ -54,7 +54,7 @@
     transition: font-size .6s ease 0s;
 }
 
-.button__header:hover {
+.button-header:hover {
     color: #fff;
     text-decoration: none;
     font-size: 50px;

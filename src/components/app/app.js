@@ -13,7 +13,7 @@ const App = () => {
             <BrowserRouter>
                 <NavMenu />
                 <Switch>
-                    <Route path='/Company'>
+                    <Route path='/Companies'>
                         <Companies />
                     </Route>
                     <Route path='/Users'>

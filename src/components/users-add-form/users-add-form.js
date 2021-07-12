@@ -9,12 +9,12 @@ export default class UsersAddForm extends Component  {
     constructor(props) {
         super(props);
         this.state = {
-            companyId: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            gender: '',
-            role: '',
+            companyId: props.companyId || '',
+            firstName: props.firstName || '',
+            lastName: props.lastName || '',
+            email: props.email || '',
+            gender: props.gender || '',
+            role: props.role || '',
         }
         this.onCompanyIdChange = this.onCompanyIdChange.bind(this);
         this.onFirstNameChange = this.onFirstNameChange.bind(this);
@@ -68,7 +68,10 @@ export default class UsersAddForm extends Component  {
             firstName: '',
             lastName: '',
             email: '',
-            gender: '',
+            gender: {
+                female: 'FEMALE',
+                male: 'MALE'
+            },
             role: ''
         });
     }
@@ -116,14 +119,14 @@ export default class UsersAddForm extends Component  {
                         className='form-control new-post-label'
                         onChange={this.onEmailChange}
                         value={this.state.email}
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     />
                     <div>
                         <p>
                             <input
                                 type='radio'
                                 name="gender"
-                                value='Famel'
+                                value={this.state.gender.female}
                                 onChange={this.onGenderChange}
                             />
                             Woman
@@ -132,7 +135,7 @@ export default class UsersAddForm extends Component  {
                             <input
                                 type='radio'
                                 name="gender"
-                                value='Male'
+                                value={this.state.gender.male}
                                 onChange={this.onGenderChange}
                             />
                             Man
