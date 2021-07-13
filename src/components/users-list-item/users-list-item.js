@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import UserEditForm from 'components/user-edit-form/user-edit-form'; 
+import UsersEditForm from 'components/users-edit-form/users-edit-form'; 
 
 
 export default class UsersListItem extends Component {
@@ -51,7 +51,7 @@ export default class UsersListItem extends Component {
                     <EditIcon />
                 </button>
                 {this.state.showEditForm && (
-                    <UserEditForm
+                    <UsersEditForm
                         handleEditFormHide={this.handleEditFormHide}
                         companyId={companyId}
                         firstName={firstName}

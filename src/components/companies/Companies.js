@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import CompaniesList from '../companies-list/companies-list.js';
+import {CompaniesList} from '../companies-list/companies-list.js';
 import CompaniesAddForm from '../companies-add-form/companies-add-form.js';
 import SearchPanel from 'components/search-panel/search-panel.js';
 
@@ -20,7 +20,9 @@ export default class Companies extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
-        this.searchPost = this.searchPost.bind(this)
+        this.searchPost = this.searchPost.bind(this);
+        this.maxId = 3;
+        this.editItem = this.editItem.bind(this)
     }
 
     deleteItem(id) {
@@ -44,6 +46,7 @@ export default class Companies extends Component {
             phonesNumber,
             site,
             description,
+            id: this.maxId++    
         }
         this.setState(({date}) => {
             const newArr = [...date, newItem];
@@ -51,6 +54,27 @@ export default class Companies extends Component {
                 date: newArr
             }
         })
+    }
+
+    editItem({id, name, address, phonesNumber, site, description}) {
+        const newItem = {
+            name,
+            address,
+            phonesNumber,
+            site,
+            description
+        }
+        this.setState(({date}) => {
+            const index = date.findIndex(elem => elem.id === id);
+
+            const before = date.slice(0, index);
+            const after = date.slice(index + 1);
+            
+            const newArr = [...before, newItem, ...after];
+            return {
+                date: newArr
+            }
+        });
     }
 
     
@@ -84,7 +108,8 @@ export default class Companies extends Component {
                 </div>
                 <CompaniesList
                     posts={visiblePosts}
-                    onDelete={this.deleteItem} />
+                    onDelete={this.deleteItem}
+                    onEdit={this.editItem} />
             </div>
         );
     }

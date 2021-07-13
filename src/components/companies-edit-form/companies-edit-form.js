@@ -14,7 +14,7 @@ export default class CompaniesEditForm extends Component {
             address: props.address || '',
             phonesNumber: props.phonesNumber || '',
             site: props.site || '',
-            description: props.description || ''
+            description: props.description || '',
         }
         this.onName = this.onName.bind(this);
         this.onAddress = this.onAddress.bind(this);
@@ -52,7 +52,7 @@ export default class CompaniesEditForm extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-        // this.props.onAdd(this.state)
+        this.props.onEdit(this.state)
         this.setState({
             name: '',
             address: '',
@@ -65,7 +65,8 @@ export default class CompaniesEditForm extends Component {
         return (
             <div>
                 <form className='companies-form'
-                onSubmit={this.onSubmit}>
+                onSubmit={this.onSubmit}
+                >
                     <button className='hide-button' onClick={this.props.handleEditFormHide}>
                         <CancelIcon />
                     </button>
@@ -73,8 +74,8 @@ export default class CompaniesEditForm extends Component {
                         type='text'
                         name='name'
                         placeholder='Name'
-                        minlength="2"
-                        maxlength="30"
+                        minLength="2"
+                        maxLength="30"
                         className='first-place'
                         onChange={this.onName}
                         value={this.state.name}
@@ -82,8 +83,8 @@ export default class CompaniesEditForm extends Component {
                     <input 
                         type='number'
                         name='number'
-                        minlength="7"
-                        maxlength="17"
+                        minLength="7"
+                        maxLength="17"
                         placeholder='Phone number'
                         className='first-place'
                         onChange={this.onPhonesNumber}
@@ -93,7 +94,7 @@ export default class CompaniesEditForm extends Component {
                         type='text'
                         name='address'
                         placeholder='Address'
-                        maxlength="40"
+                        maxLength="40"
                         className='second-place'
                         onChange={this.onAddress}
                         value={this.state.address}
@@ -110,13 +111,13 @@ export default class CompaniesEditForm extends Component {
                     <input 
                         type='text'
                         name='description'
-                        maxlength="400"
+                        maxLength="400"
                         placeholder='Description'
                         className='last-place'
                         onChange={this.onDescription}
                         value={this.state.description}
                     />
-                    <Button type='submit' variant="primary" onClick={this.props.handleEditFormHide}>Save</Button>{' '}
+                    <Button type='submit' variant="primary">Save</Button>{' '}
                 </form>
             </div>
         );

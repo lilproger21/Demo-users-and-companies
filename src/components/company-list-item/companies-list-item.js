@@ -31,7 +31,7 @@ export default class CompaniesListItem extends Component {
 
 
     render() {
-        const { name, address, phonesNumber, site, description, onDelete} = this.props
+        const { name, address, phonesNumber, site, description, onDelete, onEdit} = this.props
         return (
             <div className='list-group-item d-block'>
                 <ul className='info-list'>
@@ -58,7 +58,9 @@ export default class CompaniesListItem extends Component {
                         address={address}
                         phonesNumber={phonesNumber}
                         site={site}
-                        description={description}/>
+                        description={description}
+                        onEdit={onEdit}
+                        />
                 )}
             </div>
         );
