@@ -23,7 +23,8 @@ export default class Users extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
-        this.searchPost = this.searchPost.bind(this)
+        this.searchPost = this.searchPost.bind(this);
+        this.maxId = 4
     }
 
     deleteItem(id) {
@@ -46,7 +47,8 @@ export default class Users extends Component {
             lastName,
             email,
             gender,
-            role
+            role,
+            id: this.maxId++
         }
         this.setState(({date}) => {
             return {
