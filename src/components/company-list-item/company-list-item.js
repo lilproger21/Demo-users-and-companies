@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import CompaniesEditForm from 'components/companies-edit-form/companies-edit-form.js';
-// убрать
-export default class CompaniesListItem extends Component {
+import { CompanyForm } from 'components/company-form/company-form';
+
+export class CompaniesListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ export default class CompaniesListItem extends Component {
 
 
     render() {
-        const { name, address, phonesNumber, site, description, onDelete, onEdit} = this.props
+        const { name, address, phonesNumber, site, description, onDelete, onEdit } = this.props
         return (
             <div className='list-group-item d-block'>
                 <ul className='info-list'>
@@ -43,16 +43,16 @@ export default class CompaniesListItem extends Component {
 
                 </ul>
                 <button
-                        type='button'
-                        className='btn-trash btn-sm'
-                        onClick={onDelete}>                      
-                        <i className='fa fa-trash-o'></i>
+                    type='button'
+                    className='btn-trash btn-sm'
+                    onClick={onDelete}>
+                    <i className='fa fa-trash-o'></i>
                 </button>
-                <button className='edit-button' onClick={this.handleEditFormShow}>
+                <button className='edit-button' onClick={this.handleEditFormShow} >
                     <EditIcon />
                 </button>
                 {this.state.showEditForm && (
-                    <CompaniesEditForm 
+                    <CompanyForm
                         handleEditFormHide={this.handleEditFormHide}
                         name={name}
                         address={address}
@@ -60,11 +60,9 @@ export default class CompaniesListItem extends Component {
                         site={site}
                         description={description}
                         onEdit={onEdit}
-                        />
+                    />
                 )}
             </div>
         );
-            
-
     }
 }
