@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import UsersEditForm from 'components/users-edit-form/users-edit-form'; 
+
+import { UserForm } from 'components/user-form/user-form';
 
 
-export default class UsersListItem extends Component {
+export class UsersListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +31,7 @@ export default class UsersListItem extends Component {
     
 
     render() {
-        const { companyId, firstName, lastName, email, gender, role, id, onDelete} = this.props
+        const { companyId, firstName, lastName, email, gender, role, id, onDelete, onEdit} = this.props
         return (
             <div className='list-group-item d-block'>
                 <ul key={id} className='ClassName'>
@@ -51,18 +52,18 @@ export default class UsersListItem extends Component {
                     <EditIcon />
                 </button>
                 {this.state.showEditForm && (
-                    <UsersEditForm
+                    <UserForm
                         handleEditFormHide={this.handleEditFormHide}
                         companyId={companyId}
                         firstName={firstName}
                         lastName={lastName}
                         email={email}
                         gender={gender}
-                        role={role}/>
+                        role={role}
+                        onEdit={onEdit}
+                    />
                 )}
             </div>
         );
     }
 }
-
-

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
     
-export default class UsersAddForm extends Component  {
+export class UserForm extends Component  {
         
 
     constructor(props) {
         super(props);
+        this.isEdit = !props.date;
         this.state = {
             companyId: props.companyId || '',
             firstName: props.firstName || '',
@@ -62,7 +65,7 @@ export default class UsersAddForm extends Component  {
 
     onSubmit(e) {
         e.preventDefault()
-        this.props.onAdd(this.state)
+        this.isEdit ? this.props.onEdit(this.state) : this.props.onAdd(this.state)
         this.setState({
             companyId: '',
             firstName: '',
@@ -151,16 +154,9 @@ export default class UsersAddForm extends Component  {
                             <option value='ROOT'>ROOT</option>
                         </select>
                     </div>
-                    <button
-                        type='submit'
-                        className='btn btn-outline-secondary'>
-                         
-                    </button>
+                    <Button type='submit' variant="primary">{this.isEdit ? 'Edit' : 'Add'}</Button>
                 </form>
             </div>
         );
     }
 }
-
-
-

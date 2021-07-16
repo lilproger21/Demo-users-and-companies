@@ -1,18 +1,16 @@
 import React from 'react';
 
-import UsersListItem from '../users-list-item/users-list-item.js';
+import {UsersListItem} from '../users-list-item/user-list-item.js';
 
-const UsersList = ({ posts, onDelete }) => (
+export const UsersList = ({ posts, onDelete, onEdit }) => (
     <div>
         {posts.map(({ id, ...itemProps }) =>
             <UsersListItem
-                key={id}
                 {...itemProps}
+                key={id}                
                 onDelete={() => onDelete(id)}
+                onEdit={onEdit}
             />
         )}
     </div>
 )
-
-
-export default UsersList;

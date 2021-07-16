@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-import NavMenu from 'components/nav-menu/nav-menu.js';
-import Companies from '../companies/Companies.js';
-import Users from '../users/Users.js';
+import {NavMenu} from 'components/nav-menu/nav-menu.js';
+import {Companies} from '../companies/companies.js';
+import {Users} from '../users/users.js';
 
 import './app.css'
 
