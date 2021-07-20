@@ -1,32 +1,15 @@
-
-
-.container {
-    max-width: 1180px;
+.header-body {
     margin: 0 auto;
-    padding: 0px 10px;
-}
-
-.header {
     height: 80px;
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
     z-index: 20;
     background-color: rgb(31, 4, 44);
-
-}
-.header ._active {
-    height: 100%;
-}
-
-
-.header-body {
     position: relative;
     z-index: 2;
     display: flex;
     justify-content: center;
-    height: 100%;
     align-items: center;
 }
 
@@ -45,7 +28,7 @@
 
 
 .button-header{
-    margin-top: 15px;
+    margin-top: 20px;
     background-color: rgb(231, 9, 102);
     font-size: 45px;
     border-radius: 20px;
