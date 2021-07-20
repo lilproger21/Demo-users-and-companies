@@ -3,7 +3,6 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { UserForm } from 'components/user-form/user-form';
 
-
 export class UsersListItem extends Component {
     constructor(props) {
         super(props);
@@ -15,37 +14,37 @@ export class UsersListItem extends Component {
         };
         this.handleEditFormShow = this.handleEditFormShow.bind(this);
         this.handleEditFormHide = this.handleEditFormHide.bind(this);
-    }
+    };
 
     handleEditFormShow = () => {
         this.setState({
             showEditForm: true,
         });
-    }
+    };
 
     handleEditFormHide = () => {
         this.setState({
             showEditForm: false,
         });
-    }
-    
+    };    
 
     render() {
-        const { companyId, firstName, lastName, email, gender, role, id, onDelete, onEdit} = this.props
+        const { user, onDelete, onEdit} = this.props
         return (
             <div className='list-group-item d-block'>
-                <ul key={id} className='ClassName'>
-                    <li className='info'>companyId:{companyId}</li>
-                    <li className='info'>firstName:{firstName}</li>
-                    <li className='info'>lastName:{lastName}</li>
-                    <li className='info'>email:{email}</li>
-                    <li className='info'>gender:{gender}</li>
-                    <li className='info'>role:{role}</li>
+                <ul className='info-list'>
+                    <li className='info'>companyId:{user.companyId}</li>
+                    <li className='info'>firstName:{user.firstName}</li>
+                    <li className='info'>lastName:{user.lastName}</li>
+                    <li className='info'>email:{user.email}</li>
+                    <li className='info'>gender:{user.gender}</li>
+                    <li className='info'>role:{user.role}</li>
                 </ul>
                 <button
                     type='button'
                     className='btn-trash btn-sm'
-                    onClick={onDelete}>                    
+                    onClick={() => onDelete(user.id)}
+                >                    
                     <i className='fa fa-trash-o'></i>
                 </button>
                 <button className='edit-button' onClick={this.handleEditFormShow}>
@@ -53,17 +52,18 @@ export class UsersListItem extends Component {
                 </button>
                 {this.state.showEditForm && (
                     <UserForm
+                        user={user}
                         handleEditFormHide={this.handleEditFormHide}
-                        companyId={companyId}
-                        firstName={firstName}
-                        lastName={lastName}
-                        email={email}
-                        gender={gender}
-                        role={role}
-                        onEdit={onEdit}
+                        companyId={user.companyId}
+                        firstName={user.firstName}
+                        lastName={user.lastName}
+                        email={user.email}
+                        gender={user.gender}
+                        role={user.role}
+                        onEdit={() => onEdit(user.id)}
                     />
-                )}
+                )};
             </div>
         );
-    }
-}
+    };
+};

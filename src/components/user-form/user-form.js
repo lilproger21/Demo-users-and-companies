@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
     
-export class UserForm extends Component  {
-        
-
+export class UserForm extends Component  {  
     constructor(props) {
         super(props);
-        this.isEdit = !props.date;
+        this.isEdit = !!props.user;
         this.state = {
             companyId: props.companyId || '',
             firstName: props.firstName || '',
@@ -18,7 +14,7 @@ export class UserForm extends Component  {
             email: props.email || '',
             gender: props.gender || '',
             role: props.role || '',
-        }
+        };
         this.onCompanyIdChange = this.onCompanyIdChange.bind(this);
         this.onFirstNameChange = this.onFirstNameChange.bind(this);
         this.onLastNameChange = this.onLastNameChange.bind(this);
@@ -27,40 +23,42 @@ export class UserForm extends Component  {
         this.onRoleChange = this.onRoleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-    }
-
-    
-  
+    };
 
     onCompanyIdChange(e) {
         this.setState({
             companyId: e.target.value
-        })
-    };
+        });
+    }
+
     onFirstNameChange(e) {
         this.setState({
             firstName: e.target.value
-        })
-    };
+        });
+    }
+
     onLastNameChange(e) {
         this.setState({
             lastName: e.target.value
-        })
+        });
     }
+
     onEmailChange(e) {
         this.setState({
             email: e.target.value
-        })
+        });
     }
+
     onGenderChange(e) {
         this.setState({
             gender: e.target.value
-        })
-    }   
+        });
+    }
+
     onRoleChange(e) {
         this.setState({
             role: e.target.value
-        })
+        });
     }
 
     onSubmit(e) {
@@ -77,15 +75,15 @@ export class UserForm extends Component  {
             },
             role: ''
         });
-    }
-    
+    };  
 
     render() {
         return (
             <div>
                 <form 
                     className='bottom-panel d-flex'
-                    onSubmit={this.onSubmit}>
+                    onSubmit={this.onSubmit}
+                >
                     <input
                         type='number'
                         name="companyId"
@@ -158,5 +156,5 @@ export class UserForm extends Component  {
                 </form>
             </div>
         );
-    }
-}
+    };
+};

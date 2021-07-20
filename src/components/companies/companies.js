@@ -1,121 +1,115 @@
 import React, {Component} from 'react';
 
-import {CompaniesList} from '../companies-list/companies-list.js';
 import {SearchPanel} from 'components/search-panel/search-panel.js';
-import { CompanyForm } from 'components/company-form/company-form.js';
+import {CompanyForm} from 'components/company-form/company-form.js';
+import {CompanyListItem} from 'components/company-list-item/company-list-item';
 
-const date = [ 
+const companies = [ 
     {name: 'Pepsi Corporation', address: 'US, Manhattan str, 50', phonesNumber: '123456788', site: 'www.pepsi.com', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', id: 1},
     {name: 'Coca-Cola', address: 'US, sdad stsdafewr, 520', phonesNumber: '123445388', site: 'www.cocacola.com', description: 'Lorem ipasdffsadfectetur adipiscing elit.', id: 2},
-]
-
+];
+const company = {
+    name: '',
+    address: '',
+    phonesNumber: '',
+    site: '',
+    description: '',
+    id: ''
+};
 
 export class Companies extends Component {
     constructor(props){
         super(props);
         this.state = {
-            date,
+            companies,
+            company,
             search: ''
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.editItem = this.editItem.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
-        this.searchPost = this.searchPost.bind(this);
+        this.companiesShownList = this.companiesShownList.bind(this);
         this.maxId = 3;
         
-    }
+    };
 
     deleteItem(id) {
-        this.setState(({date}) => {
-            const index = date.findIndex(elem => elem.id === id);
+        this.setState(({companies}) => {
+            const index = companies.findIndex(elem => elem.id === id);
 
-            const before = date.slice(0, index);
-            const after = date.slice(index + 1);
+            const before = companies.slice(0, index);
+            const after = companies.slice(index + 1);
             
             const newArr = [...before, ...after];
             return {
-                date: newArr
+                companies: newArr
             }
         });
     }
 
-    addItem({name, address, phonesNumber, site, description}) {
-        const newItem = {
-            name,
-            address,
-            phonesNumber,
-            site,
-            description,
-            id: this.maxId++    
-        }
-        this.setState(({date}) => {
-            const newArr = [...date, newItem];
+    addItem(company) {
+        company.id = this.maxId++;
+        const newItem = company;   
+        this.setState(({companies}) => {
+            const newArr = [...companies, newItem];
             return {
-                date: newArr
+                companies: newArr
             }
-        })
-    }
-
-    editItem({ name, address, phonesNumber, site, description, id}) {
-            const newItem = {
-                name,
-                address,
-                phonesNumber,
-                site,
-                description,
-                id: this.maxId++
-            }
-            this.setState(({date}) => {
-                const index = date.findIndex(elem => elem.id === id);
-
-                const before = date.slice(0, index);
-                const after = date.slice(index + 1);
-                
-                const newArr = [...before, newItem, ...after];
-                return {
-                    date: newArr
-                }
-            });
-    }
-
-    
-
-    searchPost(items, search) {
-        if (search.lenght === 0) {
-            return items
-        }
-
-        return items.filter( (item) => {
-            return item.name.indexOf(search) > -1
         });
     }
+
+    editItem(company) {
+        const newItem = company;
+        this.setState(({companies}) => {
+            const index = companies.findIndex(elem => elem.id === company.id);
+
+            const before = companies.slice(0, index);
+            const after = companies.slice(index + 1);
+
+            const newArr = [...before, newItem, ...after];
+            return {
+                companies: newArr
+            }
+        });
+    }
+
+    companiesShownList() {
+        const allCompanies = this.state.companies;
+        const searchString = this.state.search;
+
+        if (searchString.lenght === 0) {
+            return allCompanies
+        }
+        return allCompanies.filter( item => {
+            return item.name.indexOf(searchString) > -1
+        });
+    }  
 
     onUpdateSearch(search) {
-        this.setState({search});
-    }
-
+        this.setState({search})
+    };
 
     render() {
-        const { date, search } = this.state;
-
-        const visiblePosts = this.searchPost(date, search);
+        const companiesShownList = this.companiesShownList();
         return (
             <div>
                 <CompanyForm
                     onAdd={this.addItem}
-                    date={date}
+                    company={this.company}                   
                 />
                 <div className='d-flex'>
-                    <SearchPanel
-                        onUpdateSearch={this.onUpdateSearch} />
+                    <SearchPanel onUpdateSearch={this.onUpdateSearch} />
                 </div>
-                <CompaniesList
-                    posts={visiblePosts}
-                    onDelete={this.deleteItem}
-                    onEdit={this.editItem}
-                />
+                {companiesShownList.map(({ ...company }) =>
+                    <CompanyListItem
+                        key={company.id}
+                        company={company}
+                        onDelete={this.deleteItem}
+                        onEdit={this.editItem}                        
+                    />
+                )};
             </div>
         );
-    }
-}
+    };
+};

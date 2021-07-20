@@ -4,16 +4,16 @@ export class SearchPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            term: ''
-        }
+            search: ''
+        };
         this.onUpdateSearch = this.onUpdateSearch.bind(this)
-    }
+    };
 
     onUpdateSearch(e) {
-        const term = e.target.value;
-        this.setState({term});
-        this.props.onUpdateSearch(term);
-    }
+        const search = e.target.value;
+        this.setState({search});
+        this.props.onUpdateSearch(search);
+    };
 
     render(){
         return (
@@ -22,10 +22,7 @@ export class SearchPanel extends Component {
                 type='text'
                 placeholder='Search'
                 onChange={this.onUpdateSearch}
-            />
-            
-        )
-    }
-
-}
-
+            />            
+        );
+    };
+};
