@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const gender = {
+    female: 'FEMALE',
+    male: 'MALE'
+};
 
-    
-export class UserForm extends Component  {
-        
-
+export class UserForm extends Component  {  
     constructor(props) {
         super(props);
-        this.isEdit = !props.date;
+        this.isEdit = !!props.user;
         this.state = {
             companyId: props.companyId || '',
             firstName: props.firstName || '',
@@ -18,7 +19,8 @@ export class UserForm extends Component  {
             email: props.email || '',
             gender: props.gender || '',
             role: props.role || '',
-        }
+            id: props.id || '',
+        };
         this.onCompanyIdChange = this.onCompanyIdChange.bind(this);
         this.onFirstNameChange = this.onFirstNameChange.bind(this);
         this.onLastNameChange = this.onLastNameChange.bind(this);
@@ -26,71 +28,70 @@ export class UserForm extends Component  {
         this.onGenderChange = this.onGenderChange.bind(this);
         this.onRoleChange = this.onRoleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
-    }
-
-    
-  
+    };
 
     onCompanyIdChange(e) {
         this.setState({
             companyId: e.target.value
-        })
-    };
+        });
+    }
+
     onFirstNameChange(e) {
         this.setState({
             firstName: e.target.value
-        })
-    };
+        });
+    }
+
     onLastNameChange(e) {
         this.setState({
             lastName: e.target.value
-        })
+        });
     }
+
     onEmailChange(e) {
         this.setState({
             email: e.target.value
-        })
+        });
     }
+
     onGenderChange(e) {
         this.setState({
             gender: e.target.value
-        })
-    }   
+        });
+    }
+
     onRoleChange(e) {
         this.setState({
             role: e.target.value
-        })
+        });
     }
 
     onSubmit(e) {
         e.preventDefault()
-        this.isEdit ? this.props.onEdit(this.state) : this.props.onAdd(this.state)
+        this.isEdit ? this.props.onEdit(this.state) : this.props.onAdd(this.state);
+        this.isEdit ? this.props.handleEditFormHide() : 
         this.setState({
             companyId: '',
             firstName: '',
             lastName: '',
             email: '',
-            gender: {
-                female: 'FEMALE',
-                male: 'MALE'
-            },
-            role: ''
+            gender: '',
+            role: '',
         });
-    }
-    
+    }  
 
     render() {
         return (
             <div>
                 <form 
                     className='bottom-panel d-flex'
-                    onSubmit={this.onSubmit}>
+                    onSubmit={this.onSubmit}
+                >
                     <input
                         type='number'
                         name="companyId"
                         placeholder='companyId '
-                        className='form-control new-post-label'
+                        className='form-control'
                         onChange={this.onCompanyIdChange}
                         value={this.state.companyId}
                     />
@@ -100,7 +101,7 @@ export class UserForm extends Component  {
                         placeholder='First Name'
                         minLength="2"
                         maxLength="20"
-                        className='form-control new-post-label'
+                        className='form-control'
                         required
                         onChange={this.onFirstNameChange}
                         value={this.state.firstName}
@@ -110,7 +111,7 @@ export class UserForm extends Component  {
                         name="lastName"
                         maxLength="15"
                         placeholder='Last Name'
-                        className='form-control new-post-label'
+                        className='form-control'
                         onChange={this.onLastNameChange}
                         value={this.state.lastName}
                         
@@ -119,17 +120,18 @@ export class UserForm extends Component  {
                         type='text'
                         name="email"
                         placeholder='Email'
-                        className='form-control new-post-label'
+                        className='form-control'
                         onChange={this.onEmailChange}
                         value={this.state.email}
-                        // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+
                     />
                     <div>
                         <p>
                             <input
                                 type='radio'
                                 name="gender"
-                                value={this.state.gender.female}
+                                value={gender.female}
                                 onChange={this.onGenderChange}
                             />
                             Woman
@@ -138,7 +140,7 @@ export class UserForm extends Component  {
                             <input
                                 type='radio'
                                 name="gender"
-                                value={this.state.gender.male}
+                                value={gender.male}
                                 onChange={this.onGenderChange}
                             />
                             Man
@@ -158,5 +160,5 @@ export class UserForm extends Component  {
                 </form>
             </div>
         );
-    }
-}
+    };
+};

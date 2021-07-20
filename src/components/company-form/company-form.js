@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './company-form.css'
 
-export class CompanyForm extends Component{
+export class CompanyForm extends Component {
     constructor(props) {
         super(props);
-        this.isEdit = !props.date;
+        this.isEdit = !!props.company;
         this.state = {
             name: props.name || '',
             address: props.address || '',
             phonesNumber: props.phonesNumber || '',
             site: props.site || '',
             description: props.description || '',
+            id: props.id || '',
         };
         this.onName = this.onName.bind(this);
         this.onAddress = this.onAddress.bind(this);
@@ -21,48 +22,50 @@ export class CompanyForm extends Component{
         this.onSite = this.onSite.bind(this);
         this.onDescription = this.onDescription.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    }
-
+    };
 
     onName(e) {
         this.setState({
             name: e.target.value
-        })
-    };
+        });
+    }
+
     onAddress(e) {
         this.setState({
             address: e.target.value
-        })
-    };
+        });
+    }
+
     onPhonesNumber(e) {
         this.setState({
             phonesNumber: e.target.value
-        })
+        });
     }
+
     onSite(e) {
         this.setState({
             site: e.target.value
-        })
+        });
     }
+
     onDescription(e) {
         this.setState({
             description: e.target.value
-        })
-    }   
-
+        });
+    }
 
     onSubmit(e) {
         e.preventDefault()
-        this.isEdit ? this.props.onEdit(this.state) : this.props.onAdd(this.state)
+        this.isEdit ? this.props.onEdit(this.state) : this.props.onAdd(this.state);
+        this.isEdit ? this.props.handleEditFormHide() : 
         this.setState({
             name: '',
             address: '',
             phonesNumber: '',
             site: '',
-            description: ''
+            description: '',
         });
     }
-
 
     render() {
         return (
