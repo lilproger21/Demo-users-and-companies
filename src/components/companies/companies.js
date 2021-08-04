@@ -20,7 +20,7 @@ export class Companies extends Component {
         this.addItem = this.addItem.bind(this);
         this.editItem = this.editItem.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
-        this.maxId = 3;        
+        this.maxId = 3;
     };
 
     deleteItem(id) {
