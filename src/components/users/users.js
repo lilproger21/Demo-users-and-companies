@@ -27,13 +27,9 @@ export class Users extends Component {
     };
 
     deleteItem(id) {
-        this.setState(({users}) => {
-            const index = users.findIndex(elem => elem.id === id);
-            const newArr = [...users.slice(0, index), ...users.slice(index + 1)];
-            return {
-                users: newArr
-            }
-        });
+        this.setState(({ users }) => ({
+            users: [...users.slice(0, users.findIndex(elem => elem.id === id)), ...users.slice(users.findIndex(elem => elem.id === id) + 1)]
+        }));
     }
 
     addItem(user) {
@@ -46,15 +42,10 @@ export class Users extends Component {
         });
     }
 
-    editItem(user) {
-        const newItem = user;
-        this.setState(({users}) => {
-            const index = users.findIndex(elem => elem.id === user.id);            
-            const newArr = [...users.slice(0, index), newItem, ...users.slice(index + 1)];
-            return {
-                users: newArr
-            }
-        });
+    editItem(editedUser) {
+        this.setState(({ users }) => ({
+            users: users.map((users) => users.id === editedUser.id ? editedUser : users)
+        }));
     }
 
     get usersShownList() {

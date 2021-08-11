@@ -20,39 +20,26 @@ export class Companies extends Component {
         this.addItem = this.addItem.bind(this);
         this.editItem = this.editItem.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
-        this.maxId = 3;
     };
 
-    deleteItem(id) {
-        this.setState(({companies}) => {
-            const index = companies.findIndex(elem => elem.id === id);
-            const newArr = [...companies.slice(0, index), ...companies.slice(index + 1)];
-            return {
-                companies: newArr
-            }
-        });
+    deleteItem(company) {
+        this.setState(({ companies }) => ({
+            companies: [...companies.slice(0, companies.findIndex(elem => elem.id === company)), ...companies.slice(companies.findIndex(elem => elem.id === company) + 1)]
+        }));
     }
 
     addItem(company) {
-        company.id = this.maxId++;
+        company.id = this.state.companies.lenght + 1;
         const newItem = company;   
-        this.setState(({companies}) => {
-            const newArr = [...companies, newItem];
-            return {
-                companies: newArr
-            }
-        });
+        this.setState(({companies}) => ({
+                companies: [...companies, newItem]
+        }));
     }
 
-    editItem(company) {
-        const newItem = company;
-        this.setState(({companies}) => {
-            const index = companies.findIndex(elem => elem.id === company.id);
-            const newArr = [...companies.slice(0, index), newItem, ...companies.slice(index + 1)];
-            return {
-                companies: newArr
-            }
-        });
+    editItem(editedCompany) {
+        this.setState(({ companies }) => ({
+            companies: companies.map((company) => company.id === editedCompany.id ? editedCompany : company)
+        }));
     }
 
     get companiesShownList() {
